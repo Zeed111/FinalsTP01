@@ -31,10 +31,26 @@ public class SpaceExplorationGame {
         HomeWorldStruct World = Create.GetHomeWorld();
         OccupationStruct Occupation = Create.GetOccupation();
         ApperanceStruct Apperance = Create.GetApperance();
+        SpecialPowerStruct Power = Create.GetSpecialPower();
+        CompanionStruct Partner = Create.GetCompanion();
+        PrimaryWeapStruct Primary = Create.GetPrimary();
+        SecondaryWeapStruct Secondary = Create.GetSecondary();
+        MeleeStruct Melee = Create.GetMelee();
 
         BasicAttri.Display();
         World.Display();
         Occupation.Display();
         Apperance.Display();
+        Power.Display();
+        Partner.Display();
+        Primary.Display();
+        Secondary.Display();
+        Melee.Display();
+    }
+
+    public static void Credits() {
+        Console.WriteLine("-----Raven Villanueva-----");
+        Console.WriteLine("-----Lenardo Jualo------");
+        Console.WriteLine("-----Daniel Gutierrez-------");
     }
 }

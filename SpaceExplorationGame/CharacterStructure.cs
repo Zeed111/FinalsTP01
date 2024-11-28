@@ -54,4 +54,44 @@ namespace CharacterStructure {
             Console.WriteLine($"Aura: {Aura}");
         }
     }
+
+    public struct SpecialPowerStruct {
+        public string SpecialPower;
+
+        public void Display() {
+            Console.WriteLine($"Speacial Power: {SpecialPower}");
+        }    
+    }
+
+    public struct CompanionStruct {
+        public string Companion;
+
+        public void Display() {
+            Console.WriteLine($"Companion: {Companion}");
+        }
+    }
+
+    public struct PrimaryWeapStruct {
+        public string PrimaryWeap;
+
+        public void Display() {
+            Console.WriteLine($"PrimaryWeapon: {PrimaryWeap}");
+        }
+    }
+
+    public struct SecondaryWeapStruct {
+        public string SecondaryWeap;
+
+        public void Display() {
+            Console.WriteLine($"SecondaryWeapon: {SecondaryWeap}");
+        }
+    }
+
+    public struct MeleeStruct {
+        public string MeleeWeap;
+
+        public void Display() {
+            Console.WriteLine($"Melee: {MeleeWeap}");
+        }
+    }
 }

@@ -297,28 +297,203 @@ namespace CharCreate {
 
         // }
 
-        // public static void SpecialPowers() {
+        public SpecialPowerStruct GetSpecialPower() {
+            SpecialPowerStruct SP = new SpecialPowerStruct();
 
-        // }
+            Console.WriteLine(" ");
+            Console.WriteLine("--Special Powers--");
+            Console.WriteLine("Choose 1 Special Power:");
+            Console.WriteLine("[1] Precognition: Have glimpses of the future, allowing for the anticipation of " +
+                "danger or the prediction of events.");
+            Console.WriteLine("[2] Technopathy: Control and interface with technology using the mind, a powerful " +
+                "ability in a technologically advanced setting.");
+            Console.WriteLine("[3] Enhanced Strength: Essential for dealing with the rigors of space travel " +
+                "and potential physical threats.");
+            Console.WriteLine("[4] Enhanced Durability: Withstand the harsh conditions of space and survive dangerous situations.");
+            Console.WriteLine("[5] Gravity Manipulation: Control gravity to navigate zero-gravity environments, " +
+                "create force fields, or even as a weapon.");
+            Console.WriteLine("[6] Elemental Control: Control elements like fire, ice, or electricity, " +
+                "potentially adapted to function in a space environment.");    
+            Console.Write("Choice: ");
+            int SPChoice = Convert.ToInt32(Console.ReadLine());
 
-        // public static void Companion() {
+            switch (SPChoice) {
+                case 1: SP.SpecialPower = "Precognition"; break;
+                case 2: SP.SpecialPower = "Technopathy"; break;
+                case 3: SP.SpecialPower = "Enhanced Strength"; break;
+                case 4: SP.SpecialPower = "Enhanced Durability"; break;
+                case 5: SP.SpecialPower = "Gravity Manipulation"; break;
+                case 6: SP.SpecialPower = "Elemental Control"; break;
+            }
 
-        // }
+            return SP;
+        }
 
-        // public static void Weapon() {
+        public CompanionStruct GetCompanion() {
+            CompanionStruct Partner = new CompanionStruct();
 
-        // }
+            Console.WriteLine(" ");
+            Console.WriteLine("--Companion--");
+            Console.WriteLine("Choose a Companion:");
+            Console.WriteLine("[1] Sentinel - A Hybrid-Robot Companion");
+            Console.WriteLine("[2] Beast - A Beast-type creature Companion");
+            Console.Write("Choice: ");
+            int CompanionChoice = Convert.ToInt32(Console.ReadLine());
 
-        // public static string Primary() {
-            
-        // }
+            if (CompanionChoice == 1) {
+                Console.WriteLine(" ");
+                Console.WriteLine("Choose a Sentinel:");
+                Console.WriteLine("[1] Diriga - A Jellyfish hybrid robot that has a sniper rifle weapon and zaps nearby enemies.");
+                Console.WriteLine("[2] Nautilus - A Advanced Robot that is capable of pulling enemies and has an icy laser rifle.");
+                Console.WriteLine("[3] Nautilus - Carrier - A carrier robot that provides ammo for its master and has shotgun rifle.");
+                Console.Write("Choice: ");
+                int SentinelChoice = Convert.ToInt32(Console.ReadLine());
 
-        // public static string Secondary() {
+                switch (SentinelChoice) {
+                    case 1: Partner.Companion = "Diriga"; break;
+                    case 2: Partner.Companion = "Nautilus"; break;
+                    case 3: Partner.Companion = "Carrier"; break;
+                }
 
-        // }
+            } else if (CompanionChoice ==2) {
+                Console.WriteLine(" ");
+                Console.WriteLine("Choose a Beast:");
+                Console.WriteLine("[1] Smeeta - A Beast that provides buffs to its master for a short period of time.");
+                Console.WriteLine("[2] Sunika Kubrow - A dog- like beast that protects its master from enemies, capable " +
+                    "of launching thorns to enemies.");
+                Console.WriteLine("[3] Hound - a dog-like beast that has flames to its body and capable of " +
+                    "burning its surrounding up to 5 meters.");
+                Console.Write("Choice: ");
+                int BeastChoice = Convert.ToInt32(Console.ReadLine());
 
-        // public static string Melee() {
+                switch (BeastChoice) {
+                    case 1: Partner.Companion = "Smeeta"; break;
+                    case 2: Partner.Companion = "Sunika Kubrow"; break;
+                    case 3: Partner.Companion = "Hound"; break;
+                }
+            }
 
-        // }
+            return Partner;
+        }
+
+        public PrimaryWeapStruct GetPrimary() {
+            PrimaryWeapStruct PryWeap = new PrimaryWeapStruct();
+
+            Console.WriteLine(" ");
+            Console.WriteLine("--Primary Weapons--");
+            Console.WriteLine("Choose a Primary:");
+            Console.WriteLine("[1] Assault Rifle - A rapid-fire, military-grade firearm designed for both short and " +
+                "long-range combat. It typically uses detachable magazines and is capable of firing in both semi-automatic and fully automatic modes.");
+            Console.WriteLine("[2] Battle Rifle - A military firearm designed for longer-range combat than an assault " +
+                "rifle, typically chambered for a larger caliber round. It is often semi-automatic or selective-fire, " +
+                "offering higher accuracy and power for engaging targets at greater distances.");
+            Console.WriteLine("[3] Sniper Rifle - A precision firearm designed for long-range shooting, with a high " + 
+                "accuracy and powerful optics, used by snipers for targeting distant or hidden enemies.");
+            Console.WriteLine("[4] Submachine Gun (SMGs) - is a compact, fully automatic firearm that fires " +
+                "pistol-caliber rounds, designed for close-range combat and high mobility.");
+            Console.WriteLine("[5] Laser Gun - A weapon that uses focused beams of light or energy to damage targets.");
+            Console.WriteLine("[6] Rail Gun - A weapon that uses electromagnetic forces to launch projectiles at " +
+                "extremely high speeds, typically relying on powerful electric currents rather than traditional gunpowder.");
+            Console.WriteLine("[7] Plasma Gun - A futuristic weapon that fires superheated ionized gas (plasma) at high velocity.");
+            Console.WriteLine("[8] Blaster - A energy weapon that fires concentrated energy bolts, typically " +
+                "using technologies like lasers or plasma to cause damage.");
+            Console.WriteLine("[9] Acceltra - A Fast firing rifle that fires a barrage of rapid - plasma rockets.");
+            Console.WriteLine("[10] Torid - A grenade rifle that makes gas clouds dealing toxin damage.");
+            Console.WriteLine("[11] AX - 52 - A rifle that when firing gained an ammo efficiency and when aiming " +
+                "headshot gained high critical chance.");
+            Console.Write("Choice: ");
+            int PWeapChoice = Convert.ToInt32(Console.ReadLine());
+
+            switch (PWeapChoice) {
+                case 1: PryWeap.PrimaryWeap = "Assault Rifle"; break;
+                case 2: PryWeap.PrimaryWeap = "Battle Rifle"; break;
+                case 3: PryWeap.PrimaryWeap = "Sniper Rifle"; break;
+                case 4: PryWeap.PrimaryWeap = "Submachine Gun"; break;
+                case 5: PryWeap.PrimaryWeap = "Laser Gun"; break;
+                case 6: PryWeap.PrimaryWeap = "Rail Gun"; break;
+                case 7: PryWeap.PrimaryWeap = "Plasma Gun"; break;
+                case 8: PryWeap.PrimaryWeap = "Blaster"; break;
+                case 9: PryWeap.PrimaryWeap = "Blaster"; break;
+                case 10: PryWeap.PrimaryWeap = "Torid"; break;
+                case 11: PryWeap.PrimaryWeap = "AX-52"; break;
+            }
+
+            return PryWeap;
+        }
+
+        public SecondaryWeapStruct GetSecondary() {
+            SecondaryWeapStruct SdryWeap = new SecondaryWeapStruct();
+
+            Console.WriteLine(" ");
+            Console.WriteLine("--Secondary Weapons--");
+            Console.WriteLine("Choose a Secondary:");
+            Console.WriteLine("[1] Tactical Pistol - A handgun designed for precision and efficiency in combat or " +   
+                "self-defense, often equipped with features like a suppressor, flashlight, or extended " +
+                "magazine for enhanced performance.");
+            Console.WriteLine("[2] Revolver - A type of handgun with a rotating cylinder that holds multiple rounds, " +
+                "allowing for consecutive shots without reloading.");
+            Console.WriteLine("[3] Ocucor - A laser pistol, When get kills spawn laser tendril (8 max) that reaches nearby target.");    
+            Console.WriteLine("[4] Furis - The Furis delivers a high damage output in a short period of time thanks to its high fire rate.");    
+            Console.WriteLine("[5] Mauser Pistol - Refers to a series of pistols produced by the German Mauser company, " +
+                "known for their reliable design and use in both military and civilian contexts. The Mauser " +
+                "C96, a notable model, is famous for its distinctive \"broomhandle\" grip and was widely " +
+                "used during the early 20th century.");    
+            Console.WriteLine("[6] Kompressa - A pistol that launches a volley of hyper pressurized water " +
+                "globules that envelop targets and explode.");    
+            Console.Write("Choice: ");
+            int SWeapChoice = Convert.ToInt32(Console.ReadLine());
+
+            switch (SWeapChoice) {
+                case 1: SdryWeap.SecondaryWeap = "Tactical Pistol"; break;
+                case 2: SdryWeap.SecondaryWeap = "Revolver"; break;
+                case 3: SdryWeap.SecondaryWeap = "Ocucor"; break;
+                case 4: SdryWeap.SecondaryWeap = "Furis"; break;
+                case 5: SdryWeap.SecondaryWeap = "Mauser Pistol"; break;
+                case 6: SdryWeap.SecondaryWeap = "Kompressa"; break;
+            }
+
+            return SdryWeap;
+        }
+
+        public MeleeStruct GetMelee() {
+            MeleeStruct Melee = new MeleeStruct();
+
+            Console.WriteLine(" ");
+            Console.WriteLine("--Melee Weapons--");
+            Console.WriteLine("Choose a Melee:");
+            Console.WriteLine("[1] Spear - A pole weapon with a pointed tip, typically made of metal, " +
+                "used for thrusting or throwing, and often employed in hunting or combat.");
+            Console.WriteLine("[2] Butterfly Knife - A folding knife with two handles that rotate around " +
+                "the blade, allowing it to be opened and closed quickly, often used in flipping tricks.");
+            Console.WriteLine("[3] Katana - A traditional Japanese sword with a curved, single-edged blade, " +
+                "known for its sharpness and craftsmanship, typically used by samurai.");
+            Console.WriteLine("[4] NunChucks - Are a traditional martial arts weapon consisting of two short " +
+                "sticks connected by a chain or rope, used for striking, blocking, and various defensive techniques.");
+            Console.WriteLine("[5] KaliSticks - are long wooden training weapons used in Filipino martial arts, " +
+                "particularly in Kali, Eskrima, and Arnis. They are typically used for striking, blocking, and practicing various combat techniques.");
+            Console.WriteLine("[6] Axe - A tool or weapon with a heavy, sharp blade attached to a handle, used for " +
+                "chopping, splitting, or cutting. In combat, it serves as a powerful melee weapon.");
+            Console.WriteLine("[7] Broken War - A fragment of The Stalker’ War sword.");
+            Console.WriteLine("[8] Magistar - Ancient Hammer that deal godly damage when doing slam attacks.");
+            Console.WriteLine("[9] Ceramic Dagger - A Dagger that is made of ceramic. Has limited range but slices fast.");
+            Console.WriteLine("[10] LightSaber - A laser sword that draws power from ancient crystals.");
+            Console.Write("Choice: ");
+            int MeleeChoice = Convert.ToInt32(Console.ReadLine());
+
+            switch (MeleeChoice) {
+                case 1: Melee.MeleeWeap = "Spear"; break;
+                case 2: Melee.MeleeWeap = "Butterfly Knife"; break;
+                case 3: Melee.MeleeWeap = "Katana"; break;
+                case 4: Melee.MeleeWeap = "NunChucks"; break;
+                case 5: Melee.MeleeWeap = "KaliSticks"; break;
+                case 6: Melee.MeleeWeap = "Axe"; break;
+                case 7: Melee.MeleeWeap = "Broken War"; break;
+                case 8: Melee.MeleeWeap = "Magistar"; break;
+                case 9: Melee.MeleeWeap = "Ceramic Dagger"; break;
+                case 10: Melee.MeleeWeap = "Lightsaber"; break;
+            }
+
+            return Melee;
+        }
     }
 }
