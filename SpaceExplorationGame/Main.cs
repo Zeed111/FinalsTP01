@@ -30,9 +30,11 @@ public class SpaceExplorationGame {
         BasicAttributesStruct BasicAttri = Create.GetBasicAttributes();
         HomeWorldStruct World = Create.GetHomeWorld();
         OccupationStruct Occupation = Create.GetOccupation();
+        ApperanceStruct Apperance = Create.GetApperance();
 
         BasicAttri.Display();
         World.Display();
         Occupation.Display();
+        Apperance.Display();
     }
 }
