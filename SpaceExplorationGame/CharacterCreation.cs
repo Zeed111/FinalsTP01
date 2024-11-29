@@ -1,4 +1,5 @@
 using CharacterStructure;
+using Stats;
 
 namespace CharCreate {
     public class CharacterCreation {
@@ -293,9 +294,10 @@ namespace CharCreate {
             return Look;
         }
 
-        // public static void AbilitesTraits() {
+        public void Stats(AllocateStatPoints CharStat) {
 
-        // }
+            CharStat.AskStats();
+        }
 
         public SpecialPowerStruct GetSpecialPower() {
             SpecialPowerStruct SP = new SpecialPowerStruct();
@@ -345,7 +347,7 @@ namespace CharCreate {
                 Console.WriteLine("Choose a Sentinel:");
                 Console.WriteLine("[1] Diriga - A Jellyfish hybrid robot that has a sniper rifle weapon and zaps nearby enemies.");
                 Console.WriteLine("[2] Nautilus - A Advanced Robot that is capable of pulling enemies and has an icy laser rifle.");
-                Console.WriteLine("[3] Nautilus - Carrier - A carrier robot that provides ammo for its master and has shotgun rifle.");
+                Console.WriteLine("[3] Carrier - A carrier robot that provides ammo for its master and has shotgun rifle.");
                 Console.Write("Choice: ");
                 int SentinelChoice = Convert.ToInt32(Console.ReadLine());
 
@@ -494,6 +496,48 @@ namespace CharCreate {
             }
 
             return Melee;
+        }
+
+        public GrenadeStruct GetGrenade() {
+            GrenadeStruct Grenade = new GrenadeStruct();
+
+            Console.WriteLine(" ");
+            Console.WriteLine("--Grenades--");
+            Console.WriteLine("Choose a Grenede:");
+            Console.WriteLine("[1] Cluster Grenade - Is a type of explosive device designed to release multiple smaller " +
+                "submunitions or grenades upon detonation, spreading shrapnel or explosives " +
+                "over a wider area for greater impact.");
+            Console.WriteLine("[2] Cryo Bomb - An explosive device designed to release a burst of extremely cold energy " +
+                "or chemicals, freezing targets or the surrounding environment to cause damage or impair movement.");
+            Console.WriteLine("[3] Impact Grenade - Is an explosive device that detonates upon contact with a surface or " +
+                "target, designed to cause damage through the force of the explosion.");
+            Console.WriteLine("[4] Flashbang Grenade - A non-lethal explosive device designed to disorient and temporarily " +
+                "blind or deafening targets with a bright flash of light and a loud noise, commonly used in tactical  operations.");
+            Console.WriteLine("[5] Gas Grenade - A grenade that produces gas clouds dealing toxin damage for a short period " +
+                "of time with a range of 5 meters.");
+            Console.WriteLine("[6] Stun Grenade - A grenade that produces a bright flash of light and a loud bang upon detonation. " +
+                "The flash and bang can temporarily disorient and stun enemies.");
+            Console.WriteLine("[7] Plasma Bomb - An explosive grenade that uses superheated plasma to cause damage.");
+            Console.WriteLine("[8] Vortex Bomb - A grenade that creates a swirling vortex upon detonation. The vortex can suck " +
+                "in enemies and deal damage.");
+            Console.WriteLine("[9] Gravitational Grenade -  A grenade that creates a small localized gravity upon detonation. " +
+                "The gravity can crush and immobilize enemies.");
+            Console.Write("Choice: ");
+            int GrenedeChoice = Convert.ToInt32(Console.ReadLine());
+
+            switch (GrenedeChoice) {
+                case 1: Grenade.GrenadeWeap = "Cluster Grenade"; break;
+                case 2: Grenade.GrenadeWeap = "Cryo Bomb"; break;
+                case 3: Grenade.GrenadeWeap = "Impact Grenade"; break;
+                case 4: Grenade.GrenadeWeap = "Flashbang Grenade"; break;
+                case 5: Grenade.GrenadeWeap = "Gas Grenade"; break;
+                case 6: Grenade.GrenadeWeap = "Stun Grenade"; break;
+                case 7: Grenade.GrenadeWeap = "Plasma Bomb"; break;
+                case 8: Grenade.GrenadeWeap = "Vortex Bomb"; break;
+                case 9: Grenade.GrenadeWeap = "Gravitational Grenade"; break;
+            }
+
+            return Grenade;
         }
     }
 }

@@ -94,4 +94,12 @@ namespace CharacterStructure {
             Console.WriteLine($"Melee: {MeleeWeap}");
         }
     }
+
+    public struct GrenadeStruct {
+        public string GrenadeWeap; 
+
+        public void Display() {
+            Console.WriteLine($"Grenede: {GrenadeWeap}");
+        }
+    }
 }
