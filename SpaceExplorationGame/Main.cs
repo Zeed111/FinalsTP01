@@ -1,6 +1,5 @@
 ﻿using System;
 using CharCreate;
-using CharacterStructure;
 using Stats;
 
 public class SpaceExplorationGame {
@@ -14,54 +13,61 @@ public class SpaceExplorationGame {
             Console.WriteLine("[5] Exit");
             Console.Write("Choice: ");
 
-            int choice = Convert.ToInt32(Console.ReadLine());
+            try {
+                int choice = Convert.ToInt32(Console.ReadLine());
 
-            switch (choice) {
-                case 1:
-                    NewGame();
-                    break;
-                case 3:
-                    Campaign();
-                    break;
-                case 4:
-                    Credits();
-                    break;   
-                case 5:
-                    Environment.Exit(0); 
-                    break;         
+                switch (choice) {
+                    case 1:
+                        NewGame();
+                        break;
+                    case 3:
+                        Campaign();
+                        break;
+                    case 4:
+                        Credits();
+                        break;   
+                    case 5:
+                        Environment.Exit(0); 
+                        break;     
+                    default:
+                        throw new Exception("Error!! Please choose between 1 to 5");        
+                }
+            } catch (Exception) {
+                Console.WriteLine(" ");
+                Console.WriteLine("Please enter a number!");
             }
         }
     }
 
     public static void NewGame() {
         CharacterCreation Create = new CharacterCreation();
-        BasicAttributesStruct BasicAttri = Create.GetBasicAttributes();
-        HomeWorldStruct World = Create.GetHomeWorld();
-        OccupationStruct Occupation = Create.GetOccupation();
-        ApperanceStruct Apperance = Create.GetApperance();
-        SpecialPowerStruct Power = Create.GetSpecialPower();
-        CompanionStruct Partner = Create.GetCompanion();
-        PrimaryWeapStruct Primary = Create.GetPrimary();
-        SecondaryWeapStruct Secondary = Create.GetSecondary();
-        MeleeStruct Melee = Create.GetMelee();
-        GrenadeStruct Grenade = Create.GetGrenade();
         AllocateStatPoints CharStat = new AllocateStatPoints();
 
-        Create.Stats(CharStat);
-        BasicAttri.Display();
-        World.Display();
-        Occupation.Display();
-        Apperance.Display();
-        Power.Display();
-        Partner.Display();
-        Primary.Display();
-        Secondary.Display();
-        Melee.Display();
-        Grenade.Display();
+        Create.GetBasicAttributes();
+        Create.GetHomeWorld();
+        Create.GetOccupation();
+        Create.GetApperance();
+        Create.GetSpecialPower();
+        Create.GetCompanion();
+        Create.GetPrimary();
+        //Create.GetSecondary();
+        //Create.GetMelee();
+        //Create.GetGrenade();
+
+        CharStat.AskStats();
+        Create.Attributes.Display();
+        Create.World.Display();
+        Create.Role.Display();
+        Create.Look.Display();
+        Create.SP.Display();
+        Create.Partner.Display();
+        Create.PryWeap.Display();
         CharStat.Display();
 
         Console.WriteLine("Loading....");
         Thread.Sleep(2000);
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+        Console.WriteLine(new string(' ', Console.WindowWidth));
 
         Console.WriteLine("Press any key to go back to main menu.");
         Console.ReadKey();
@@ -81,7 +87,9 @@ public class SpaceExplorationGame {
 
         Console.WriteLine("");
         Console.WriteLine("Loading....");
-        Thread.Sleep(2000);
+        Thread.Sleep(5000);
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+        Console.WriteLine(new string(' ', Console.WindowWidth));
 
         Console.WriteLine($"Next, they arrived on Pyros IX, a desert planet ruled by relentless\n" +
             "sandstorms and fierce nomadic tribes. The tribes, who revered the second\n" +
@@ -94,7 +102,9 @@ public class SpaceExplorationGame {
         
         Console.WriteLine("");
         Console.WriteLine("Loading....");
-        Thread.Sleep(2000);
+        Thread.Sleep(5000);
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+        Console.WriteLine(new string(' ', Console.WindowWidth));
 
         Console.WriteLine($"The journey then led to Auralis, a brutal prison planet where chaos\n" + 
             "reigned and violence was law. To claim the fourth key, the person infiltrated\n" + 
@@ -107,7 +117,9 @@ public class SpaceExplorationGame {
 
         Console.WriteLine("");
         Console.WriteLine("Loading....");
-        Thread.Sleep(2000);    
+        Thread.Sleep(5000);  
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+        Console.WriteLine(new string(' ', Console.WindowWidth));
         
         Console.WriteLine("Their final stop before The Laugh Tail was Valtoria, the galaxy’s financial\n" + 
             "hub, where wealth dictated power. The final key was locked in the vaults of\n" + 
@@ -119,7 +131,9 @@ public class SpaceExplorationGame {
 
         Console.WriteLine("");
         Console.WriteLine("Loading....");
-        Thread.Sleep(2000);    
+        Thread.Sleep(5000);    
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+        Console.WriteLine(new string(' ', Console.WindowWidth));
         
         Console.WriteLine("Standing at the gates of The Laugh Tail, the person felt the weight of their\n" + 
             "journey, but fear did not stop them. The fate of their sibling and the promise\n" + 
@@ -130,7 +144,10 @@ public class SpaceExplorationGame {
 
         Console.WriteLine("");
         Console.WriteLine("Loading....");
-        Thread.Sleep(2000);    
+        Thread.Sleep(5000);    
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+        Console.WriteLine(new string(' ', Console.WindowWidth));
+
 
         Console.WriteLine("Press any key to go back to main menu.");
         Console.ReadKey();
@@ -141,6 +158,8 @@ public class SpaceExplorationGame {
         Console.WriteLine("");
         Console.WriteLine("Loading....");
         Thread.Sleep(2000);
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+        Console.WriteLine(new string(' ', Console.WindowWidth));
 
         Console.WriteLine("-----Raven Villanueva-----");
         Console.WriteLine("-----Lenardo Jualo------");
@@ -149,6 +168,8 @@ public class SpaceExplorationGame {
         Console.WriteLine("");
         Console.WriteLine("Loading....");
         Thread.Sleep(2000);
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+        Console.WriteLine(new string(' ', Console.WindowWidth));
 
         Console.WriteLine("Press any key to go back to main menu.");
         Console.ReadKey();

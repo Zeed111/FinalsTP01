@@ -1,431 +1,346 @@
 using CharacterStructure;
 using Stats;
 
+
 namespace CharCreate {
     public class CharacterCreation {
-    
-        public BasicAttributesStruct GetBasicAttributes() {
-            BasicAttributesStruct Attributes = new BasicAttributesStruct();
+        public BasicAttributesStruct Attributes = new BasicAttributesStruct("Unknown", "Unknown", "Unknown");
+        public HomeWorldStruct World = new HomeWorldStruct("Unknown");
+        public  OccupationStruct Role = new OccupationStruct("Unknown");
+        public ApperanceStruct Look = new ApperanceStruct("Unknown", "Unknown", "Unknown", "Unknown", "Unknown", 
+            "Unknown", "Unknown", "Unknown", "Unknown", "Unknown");
+        public SpecialPowerStruct SP = new SpecialPowerStruct("Unknown");
+        public CompanionStruct Partner = new CompanionStruct("Unknown");
+        public PrimaryWeapStruct PryWeap = new PrimaryWeapStruct("Unknown");
+        public SecondaryWeapStruct SdryWeap = new SecondaryWeapStruct("Unknown");
+        public MeleeStruct Melee = new MeleeStruct("Unknown");
+        public GrenadeStruct Grenade = new GrenadeStruct("Unknown");
+
+
+
+        public void GetBasicAttributes() {
+            string[,] SpeciesOptions = {
+                {"Humans", ""},
+                {"Titans", ""},
+                {"Cyborg", ""},
+                {"Shapeshifter", ""},
+                {"Elves", ""},
+            }; 
+
+            string[,] GenderOptions = {
+                {"Male", ""},
+                {"Female", ""},
+                {"Non-Binary", ""},
+                {"Gay", ""},
+                {"Lesbian", ""},
+            };
+
+            string[,] AgeOptions = {
+                {"Rising Star", "- 50 to 100"},
+                {"Super Rookie", "- 200 to 600"},
+                {"Prime", "- 800 to 1,000"},
+                {"Living Legend", "- 1,500 to 2,500"},
+                {"Echoes of Past", "- 5,000 to 10,000"},
+            };
 
             Console.WriteLine("--Basic Attributes--");
-            Console.WriteLine("Species:");
-            Console.WriteLine("[1] Humans");
-            Console.WriteLine("[2] Titans");
-            Console.WriteLine("[3] Cyborg");
-            Console.WriteLine("[4] Shapeshifter");
-            Console.WriteLine("[5] Elves");
-            Console.Write("Choice: ");
-            int ChoiceSpecies = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Species", SpeciesOptions);
+            int ChoiceSpecies = Utility.ValidateChoices("Choose a Species (1-5): ", 1, 5);
             
-            Console.WriteLine(" ");
-            Console.WriteLine("Gender:");
-            Console.WriteLine("[1] Male");
-            Console.WriteLine("[2] Female");
-            Console.WriteLine("[3] Non-Binary");
-            Console.WriteLine("[4] Gay");
-            Console.WriteLine("[5] Lesbian");
-            Console.Write("Choice: ");
-            int ChoiceGender = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Gender", GenderOptions);
+            int ChoiceGender = Utility.ValidateChoices("Choose a Gender (1-5): ", 1, 5);
 
-            Console.WriteLine(" ");
-            Console.WriteLine("Age:");
-            Console.WriteLine("[1] Rising Star - 50 to 100");
-            Console.WriteLine("[2] Super Rookie - 200 to 600");
-            Console.WriteLine("[3] Prime - 800 to 1,000");
-            Console.WriteLine("[4] Living Legend - 1,500 to 2,500");
-            Console.WriteLine("[5] Echoes of Past - 5,000 to 10,000");
-            Console.Write("Choice: ");
-            int ChoiceAge = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Age", AgeOptions);
+            int ChoiceAge = Utility.ValidateChoices("Choose a Age (1-5): ", 1, 5);
 
-            switch (ChoiceSpecies) {
-                case 1: Attributes.Species = "Humans"; break;
-                case 2: Attributes.Species = "Titans"; break;
-                case 3: Attributes.Species = "Cyborg"; break;
-                case 4: Attributes.Species = "Shapeshifter"; break;
-                case 5: Attributes.Species = "Elves"; break;
-            }
-
-            switch (ChoiceGender) {
-                case 1: Attributes.Gender = "Male"; break;
-                case 2: Attributes.Gender = "Female"; break;
-                case 3: Attributes.Gender = "Non-Binary"; break;
-                case 4: Attributes.Gender = "Gay"; break;
-                case 5: Attributes.Gender = "Lesbian"; break;
-            }
-
-            switch (ChoiceAge) {
-                case 1: Attributes.Age = "Rising Star"; break;
-                case 2: Attributes.Age = "Super Rookie"; break;
-                case 3: Attributes.Age = "Prime"; break;
-                case 4: Attributes.Age = "Living Legend"; break;
-                case 5: Attributes.Age = "Echoes of Past"; break;
-            }
-
-            return Attributes;
+            Attributes.Species = SpeciesOptions[ChoiceSpecies -1, 0];
+            Attributes.Gender = GenderOptions[ChoiceGender -1, 0];
+            Attributes.Age = AgeOptions[ChoiceAge -1, 0];
         }
 
-        public HomeWorldStruct GetHomeWorld() {
-            HomeWorldStruct World = new HomeWorldStruct();
+        public void GetHomeWorld() {
+            string[,] HomeWorldOptions = {
+                {"Ashara", "(High-Tech World)"},
+                {"Pyros IX", "(Desert World)"},
+                {"Vextris", " Wasted Earth version)"},
+                {"Auralis", "(Prison Planet)"},
+                {"Noctivis", " Orbital Luxury Ring World)"},
+                {"Valtoria", "(Banking Capital World Trading)"}
+            }; 
 
             Console.WriteLine(" ");
-            Console.WriteLine("--Homeworld--");
-            Console.WriteLine("[1] Ashara (High-Tech World)");
-            Console.WriteLine("[2] Pyros IX (Desert World)");
-            Console.WriteLine("[3] Vextris (Wasted Earth version)");
-            Console.WriteLine("[4] Auralis (Prison Planet)");
-            Console.WriteLine("[5] Noctivis (Orbital Luxury Ring World)");
-            Console.WriteLine("[6] Valtoria (Banking Capital World Trading)");
-            Console.Write("Choice: ");
-            int WorldChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("HomeWorld", HomeWorldOptions);
+            int ChoiceHomeWorld = Utility.ValidateChoices("Choose a HomeWorld (1-6): ", 1, 6);
 
-            switch (WorldChoice) {
-                case 1: World.HomeWorld = "Ashara"; break;
-                case 2: World.HomeWorld = "Pyros IX"; break;
-                case 3: World.HomeWorld = "Vextris"; break;
-                case 4: World.HomeWorld = "Auralis"; break;
-                case 5: World.HomeWorld = "Noctivis"; break;
-                case 6: World.HomeWorld = "Valtoria"; break;
-            }
-
-            return World;
+            World.HomeWorld = HomeWorldOptions[ChoiceHomeWorld -1, 0];
         }
 
-         public OccupationStruct GetOccupation() {
-            OccupationStruct Role = new OccupationStruct();
+         public void GetOccupation() {
+            string[,] OccupationOptions = {
+                {"StarShip Captain", "- Leads a spacecraft, guiding the crew through missions, making key decisions, " +
+                    "and handling interstellar challenges with leadership, strategy, and diplomacy."},
+                {"Mercenary", "A soldier for hire, fighting for profit rather than loyalty, known for their " +
+                    "combat skills and independence."},
+                {"Merchant", "- A person who buys and sells goods for profit, often dealing in trade, commerce, or retail."},
+                {"Hacker", "- Someone skilled in computer systems who finds and exploits vulnerabilities, often for " +
+                    "accessing or manipulating data, either ethically or maliciously."},
+                {"Sniper", "- A highly trained marksman specializing in long-range, precise shooting, often used in military " +
+                    "or tactical operations."},
+                {"Mage", "- A practitioner of magic, skilled in casting spells and manipulating mystical forces, often in fantasy settings."},
+                {"Space Soldier", "- A combatant trained for warfare in outer space, often depicted in science fiction, " +
+                    "equipped with advanced technology and weaponry to engage in battles on spacecraft or alien planets."}
+            };
 
             Console.WriteLine(" ");
-            Console.WriteLine("--Occupation--");
-            Console.WriteLine("[1] StarShip Captain - Leads a spacecraft, guiding the crew through missions, " +
-                "making key decisions, and handling interstellar challenges with leadership, strategy, and diplomacy.");
-            Console.WriteLine("[2] Mercenary - A soldier for hire, fighting for profit rather than loyalty, " +
-                "known for their combat skills and independence.");
-            Console.WriteLine("[3] Merchant - A person who buys and sells goods for profit, often dealing in trade, commerce, or retail.");
-            Console.WriteLine("[4] Hacker - Is someone skilled in computer systems who finds and exploits vulnerabilities, " +
-                "often for accessing or manipulating data, either ethically or maliciously.");
-            Console.WriteLine("[5] Sniper - A highly trained marksman specializing in long-range, precise shooting, " +
-                "often used in military or tactical operations.");
-            Console.WriteLine("[6] Mage - A practitioner of magic, skilled in casting spells and " +
-                "manipulating mystical forces, often in fantasy settings.");
-            Console.WriteLine("[7] Space Soldier - Is a combatant trained for warfare in outer space, often depicted " +
-                "in science fiction. They are equipped with advanced technology and weaponry to engage " +
-                "in battles on spacecraft or alien planets.");
-            Console.Write("Choice: ");
-            int OccupationChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Occupation", OccupationOptions);
+            int ChoiceOccupation = Utility.ValidateChoices("Choose a Occupation (1-7): ", 1, 7);
 
-            switch (OccupationChoice) {
-                case 1: Role.Occupation = "StarShip Captain"; break;
-                case 2: Role.Occupation = "Mercenary"; break;
-                case 3: Role.Occupation = "Merchant"; break;
-                case 4: Role.Occupation = "Hacker"; break;
-                case 5: Role.Occupation = "Sniper"; break;
-                case 6: Role.Occupation = "Mage"; break;
-                case 7: Role.Occupation = "Space Soldier"; break;
-            }
-
-            return Role;     
+            Role.Occupation = OccupationOptions[ChoiceOccupation -1, 0]; 
          }
 
-        public ApperanceStruct GetApperance() {
-            ApperanceStruct Look = new ApperanceStruct();
-
+        public void GetApperance() {
             Console.WriteLine(" ");
             Console.WriteLine("--Appearance Customization--");
-            Console.WriteLine("Hair Color:");
-            Console.WriteLine("[1] Black");
-            Console.WriteLine("[2] Brown");
-            Console.WriteLine("[3] Blonde");
-            Console.WriteLine("[4] Red");
-            Console.WriteLine("[5] None (Bald)");
-            Console.Write("Choice: ");
-            int HairColorChoice = Convert.ToInt32(Console.ReadLine());
+
+            string[,] HairColorOptions = {
+                {"Black", ""},
+                {"Brown", ""},
+                {"Blonde", ""},
+                {"Red", ""},
+                {"None (Bald)", ""}
+            };
+            
+            string[,] HairTypeOptions = {
+                {"Straight", ""},
+                {"Curly", ""},
+                {"Long", ""},
+                {"Short", ""},
+                {"Crystalline", ""}
+            };
+
+            string[,] EyeColorOptions = {
+                {"Blue", ""},
+                {"Green", ""},
+                {"Brown", ""},
+                {"Gold", ""},
+                {"Black", ""}
+            };
+
+            string[,] SkinToneOptions = {
+                {"Pale", ""},
+                {"Fair", ""},
+                {"Tan", ""},
+                {"Olive", ""},
+                {"Dark", ""}
+            };
+
+            string[,] HeadFaceAccessories = {
+                {"Space Helmet", ""},
+                {"Goggles", ""},
+                {"Masks", ""},
+                {"Scouter", ""},
+                {"Earrings", ""}
+            };
+
+            string[,] TorsoBackAccessories = {
+                {"Jetpacks", ""},
+                {"Backpack", ""},
+                {"Capes and Cloaks", ""},
+                {"Utility Belts", ""}
+            };
+
+            string[,] ArmHandAccessories = {
+                {"Space Gloves", ""},
+                {"Rings", ""},
+                {"Arm Bracelet", ""},
+                {"Vortex Gauntlet", ""}
+            };
+
+            string[,] LegFootAccessories = {
+                {"Boots", ""},
+                {"Knee Pads", " "},
+                {"Slippers", ""},
+                {"Space Shoes", ""}
+            }; 
+
+            string[,] AuraOptions = {
+                {"Black", ""},
+                {"Red", ""},
+                {"Green", ""},
+                {"Blue", ""},
+                {"Pink", ""}
+            };
+
+            
+            Console.WriteLine(" ");
+            Utility.DisplayOptions("Hair Color", HairColorOptions);
+            int ChoiceHairColor = Utility.ValidateChoices("Choose a Hair Color (1-5): ", 1, 5);
 
             Console.WriteLine(" ");
-            Console.WriteLine("Hair Type:");
-            Console.WriteLine("[1] Straight");
-            Console.WriteLine("[2] Curly");
-            Console.WriteLine("[3] Long");
-            Console.WriteLine("[4] Short");
-            Console.WriteLine("[5] Crystalline");
-            Console.Write("Choice: ");
-            int HairTypeChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("HairType", HairTypeOptions);
+            int ChoiceHairType = Utility.ValidateChoices("Choose a Hair Type (1-5): ", 1, 5);
 
             Console.WriteLine(" ");
-            Console.WriteLine("Eye Color:");
-            Console.WriteLine("[1] Blue");
-            Console.WriteLine("[2] Green");
-            Console.WriteLine("[3] Brown");
-            Console.WriteLine("[4] Gold");
-            Console.WriteLine("[5] Black");
-            Console.Write("Choice: ");
-            int EyeColorChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Eye Color", EyeColorOptions);
+            int ChoiceEyeColor = Utility.ValidateChoices("Choose a Eye Color (1-5): ", 1, 5);
 
             Console.WriteLine(" ");
-            Console.WriteLine("Skin Tone:");
-            Console.WriteLine("[1] Pale");
-            Console.WriteLine("[2] Fair");
-            Console.WriteLine("[3] Tan");
-            Console.WriteLine("[4] Olive");
-            Console.WriteLine("[5] Dark");
-            Console.Write("Choice: ");
-            int SkinToneChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Skin Tone", SkinToneOptions);
+            int ChoiceSkinTone = Utility.ValidateChoices("Choose a Skin Tone (1-5): ", 1, 5);
 
             Console.WriteLine(" ");
-            Console.WriteLine("Head and Face Accessories:");
-            Console.WriteLine("[1] Space Helmet");
-            Console.WriteLine("[2] Goggles");
-            Console.WriteLine("[3] Masks");
-            Console.WriteLine("[4] Scouter");
-            Console.WriteLine("[5] Earrings");
-            Console.Write("Choice: ");
-            int HeadAccessoryChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Head Accessory", HeadFaceAccessories);
+            int ChoiceHeadAccessory = Utility.ValidateChoices("Choose a Head Accessory (1-5): ", 1, 5);
 
             Console.WriteLine(" ");
-            Console.WriteLine("Torso and Back Accessories:");
-            Console.WriteLine("[1] Jetpacks");
-            Console.WriteLine("[2] Backpack");
-            Console.WriteLine("[3] Capes and Cloaks");
-            Console.WriteLine("[4] Utility Belts");
-            Console.Write("Choice: ");
-            int BodyAccessoryChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Body Accessory", TorsoBackAccessories);
+            int ChoiceBodyAccessory = Utility.ValidateChoices("Choose a Body Accessory (1-4): ", 1, 4);
 
             Console.WriteLine(" ");
-            Console.WriteLine("Arm and Hand Accessories:");
-            Console.WriteLine("[1] Space Gloves");
-            Console.WriteLine("[2] Rings");
-            Console.WriteLine("[3] Arm Bracelet");
-            Console.WriteLine("[4] Vortex Gauntlet");
-            Console.Write("Choice: ");
-            int ArmAccessoryChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Arm Accessory", ArmHandAccessories);
+            int ChoiceArmAccessory = Utility.ValidateChoices("Choose a Arm Accessory (1-4): ", 1, 4);
 
             Console.WriteLine(" ");
-            Console.WriteLine("Leg and Foot Accessories:");
-            Console.WriteLine("[1] Boots");
-            Console.WriteLine("[2] Knee Pads");
-            Console.WriteLine("[3] Slippers");
-            Console.WriteLine("[4] Space Shoes");
-            Console.Write("Choice: ");
-            int LegAccessoryChoice = Convert.ToInt32(Console.ReadLine()); 
+            Utility.DisplayOptions("Leg Accessory", LegFootAccessories);
+            int ChoiceLegAccessory = Utility.ValidateChoices("Choose a Leg Accessory (1-4): ", 1, 4);
+
+            Console.WriteLine(" ");
+            Utility.DisplayOptions("Aura", AuraOptions);
+            int ChoiceAura = Utility.ValidateChoices("Choose a Aura (1-5): ", 1, 5);
+            
+            Look.HairColor = HairColorOptions[ChoiceHairColor -1, 0];
+            Look.HairType = HairTypeOptions[ChoiceHairType -1, 0];
+            Look.EyeColor = EyeColorOptions[ChoiceEyeColor -1, 0];
+            Look.SkinTone = SkinToneOptions[ChoiceSkinTone -1, 0];
+            Look.HeadAccessory = HeadFaceAccessories[ChoiceHeadAccessory -1, 0];
+            Look.BodyAccessory = TorsoBackAccessories[ChoiceBodyAccessory -1, 0];
+            Look.ArmAccessory = ArmHandAccessories[ChoiceArmAccessory -1, 0];
+            Look.LegAccessory = LegFootAccessories[ChoiceLegAccessory -1, 0];
+            Look.Aura = AuraOptions[ChoiceAura -1, 0];
 
             Console.WriteLine(" ");
             Console.WriteLine("Do you want a tail? [1] Yes [2] No");
-            int TailChoice = Convert.ToInt32(Console.ReadLine());
+            int TailChoice;
 
-            Console.WriteLine(" ");
-            Console.WriteLine("Aura:");
-            Console.WriteLine("[1] Black");
-            Console.WriteLine("[2] Red");
-            Console.WriteLine("[3] Green");
-            Console.WriteLine("[4] Blue");
-            Console.WriteLine("[5] Pink");
-            Console.Write("Choice: ");
-            int AuraChoice = Convert.ToInt32(Console.ReadLine());
+            while (true) {
+                try {
+                    TailChoice = Convert.ToInt32(Console.ReadLine());
 
-            switch (HairColorChoice) {
-                case 1: Look.HairColor = "Black"; break;
-                case 2: Look.HairColor = "Brown"; break;
-                case 3: Look.HairColor = "Blonde"; break;
-                case 4: Look.HairColor = "Red"; break;
-                case 5: Look.HairColor = "None (Bald)"; break;
+                    switch (TailChoice) {
+                        case 1:
+                            Look.Tail = "Has Tail";
+                            break;
+                        case 2:
+                            Look.Tail = "No Tail";
+                            break;
+                        default:
+                            throw new Exception("Error 1 or 2 only");
+                    }
+
+                    break;
+                } catch (Exception e) {
+                    Console.WriteLine(e.Message);
+                }
             }
-
-            switch (HairTypeChoice) {
-                case 1: Look.HairType = "Straight"; break;
-                case 2: Look.HairType = "Curly"; break;
-                case 3: Look.HairType = "Long"; break;
-                case 4: Look.HairType = "Short"; break;
-                case 5: Look.HairType = "Crystalline"; break;
-            }
-
-            switch (EyeColorChoice) {
-                case 1: Look.EyeColor = "Blue"; break;
-                case 2: Look.EyeColor = "Green"; break;
-                case 3: Look.EyeColor = "Brown"; break;
-                case 4: Look.EyeColor = "Gold"; break;
-                case 5: Look.EyeColor = "Black"; break;
-            }
-
-             switch (SkinToneChoice) {
-                case 1: Look.SkinTone = "Pale"; break;
-                case 2: Look.SkinTone = "Fair"; break;
-                case 3: Look.SkinTone = "Tan"; break;
-                case 4: Look.SkinTone = "Olive"; break;
-                case 5: Look.SkinTone = "Dark"; break;
-            }
-
-            switch (HeadAccessoryChoice) {
-                case 1: Look.HeadAccessory = "Space Helmet"; break;
-                case 2: Look.HeadAccessory = "Goggles"; break;
-                case 3: Look.HeadAccessory = "Masks"; break;
-                case 4: Look.HeadAccessory = "Scouter"; break;
-                case 5: Look.HeadAccessory = "Earrings"; break;
-            }
-
-            switch (BodyAccessoryChoice) {
-                case 1: Look.BodyAccessory = "Jetpacks"; break;
-                case 2: Look.BodyAccessory = "Backpack"; break;
-                case 3: Look.BodyAccessory = "Capes and Cloaks"; break;
-                case 4: Look.BodyAccessory = "Utility Belts"; break;
-            }
-
-            switch (ArmAccessoryChoice) {
-                case 1: Look.ArmAccessory = "Space Gloves"; break;
-                case 2: Look.ArmAccessory = "Rings"; break;
-                case 3: Look.ArmAccessory = "Arm Bracelet"; break;
-                case 4: Look.ArmAccessory = "Vortex Gauntlet"; break;
-            }
-
-            switch (LegAccessoryChoice) {
-                case 1: Look.LegAccessory = "Boots"; break;
-                case 2: Look.LegAccessory = "Knee Pads"; break;
-                case 3: Look.LegAccessory = "Slippers"; break;
-                case 4: Look.LegAccessory = "Space Shoes"; break;
-            }
-
-            Look.Tail = (TailChoice == 1) ? "Has Tail" : "No Tail";
-
-            switch (AuraChoice) {
-                case 1: Look.Aura = "Black"; break;
-                case 2: Look.Aura = "Red"; break;
-                case 3: Look.Aura = "Green"; break;
-                case 4: Look.Aura = "Blue"; break;
-                case 5: Look.Aura = "Pink"; break;
-            }
-
-            return Look;
         }
 
         public void Stats(AllocateStatPoints CharStat) {
-
             CharStat.AskStats();
         }
 
-        public SpecialPowerStruct GetSpecialPower() {
-            SpecialPowerStruct SP = new SpecialPowerStruct();
+        public void GetSpecialPower() {
+            string[,] SpecialPowerOptions = {
+                {"Precognition", "- Have glimpses of the future, allowing for the anticipation of danger or the prediction of events."},
+                {"Technopathy", "- Control and interface with technology using the mind, a powerful ability in a technologically advanced setting."},
+                {"Enhanced Strength", "- Essential for dealing with the rigors of space travel and potential physical threats."},
+                {"Enhanced Durability", "- Withstand the harsh conditions of space and survive dangerous situations."},
+                {"Gravity Manipulation", "- Control gravity to navigate zero-gravity environments, create force fields, or even as a weapon."},
+                {"Elemental Control", "- Control elements like fire, ice, or electricity, potentially adapted to function in a space environment."}
+            };
 
             Console.WriteLine(" ");
-            Console.WriteLine("--Special Powers--");
-            Console.WriteLine("Choose 1 Special Power:");
-            Console.WriteLine("[1] Precognition: Have glimpses of the future, allowing for the anticipation of " +
-                "danger or the prediction of events.");
-            Console.WriteLine("[2] Technopathy: Control and interface with technology using the mind, a powerful " +
-                "ability in a technologically advanced setting.");
-            Console.WriteLine("[3] Enhanced Strength: Essential for dealing with the rigors of space travel " +
-                "and potential physical threats.");
-            Console.WriteLine("[4] Enhanced Durability: Withstand the harsh conditions of space and survive dangerous situations.");
-            Console.WriteLine("[5] Gravity Manipulation: Control gravity to navigate zero-gravity environments, " +
-                "create force fields, or even as a weapon.");
-            Console.WriteLine("[6] Elemental Control: Control elements like fire, ice, or electricity, " +
-                "potentially adapted to function in a space environment.");    
-            Console.Write("Choice: ");
-            int SPChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Special Powers", SpecialPowerOptions);
+            int ChoiceSpecialPower = Utility.ValidateChoices("Choose a Special Power (1-6): ", 1, 6);
 
-            switch (SPChoice) {
-                case 1: SP.SpecialPower = "Precognition"; break;
-                case 2: SP.SpecialPower = "Technopathy"; break;
-                case 3: SP.SpecialPower = "Enhanced Strength"; break;
-                case 4: SP.SpecialPower = "Enhanced Durability"; break;
-                case 5: SP.SpecialPower = "Gravity Manipulation"; break;
-                case 6: SP.SpecialPower = "Elemental Control"; break;
-            }
-
-            return SP;
+            SP.SpecialPower = SpecialPowerOptions[ChoiceSpecialPower - 1, 0];
         }
 
-        public CompanionStruct GetCompanion() {
-            CompanionStruct Partner = new CompanionStruct();
+        public void GetCompanion() {
+            string[,] CompanionOptions = {
+                {"Sentinel", "- A Hybrid-Robot Companion"},
+                {"Beast", "- A Beast-type creature Companion"}
+            };
+
+            string[,] SentinelOptions = {
+                {"Diriga", "- A Jellyfish hybrid robot that has a sniper rifle weapon and zaps nearby enemies."},
+                {"Nautilus", "- An advanced robot capable of pulling enemies and equipped with an icy laser rifle."},
+                {"Carrier", "- A carrier robot that provides ammo for its master and is equipped with a shotgun rifle."}
+            };
+
+            string[,] BeastOptions = {
+                {"Smeeta", "- A beast that provides buffs to its master for a short period of time."},
+                {"Sunika Kubrow", "- A dog-like beast that protects its master and is capable of launching thorns at enemies."},
+                {"Hound", "- A dog-like beast with flames on its body, capable of burning its surroundings up to 5 meters."}
+            };
 
             Console.WriteLine(" ");
-            Console.WriteLine("--Companion--");
-            Console.WriteLine("Choose a Companion:");
-            Console.WriteLine("[1] Sentinel - A Hybrid-Robot Companion");
-            Console.WriteLine("[2] Beast - A Beast-type creature Companion");
-            Console.Write("Choice: ");
-            int CompanionChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Companion", CompanionOptions);
+            
 
-            if (CompanionChoice == 1) {
-                Console.WriteLine(" ");
-                Console.WriteLine("Choose a Sentinel:");
-                Console.WriteLine("[1] Diriga - A Jellyfish hybrid robot that has a sniper rifle weapon and zaps nearby enemies.");
-                Console.WriteLine("[2] Nautilus - A Advanced Robot that is capable of pulling enemies and has an icy laser rifle.");
-                Console.WriteLine("[3] Carrier - A carrier robot that provides ammo for its master and has shotgun rifle.");
-                Console.Write("Choice: ");
-                int SentinelChoice = Convert.ToInt32(Console.ReadLine());
-
-                switch (SentinelChoice) {
-                    case 1: Partner.Companion = "Diriga"; break;
-                    case 2: Partner.Companion = "Nautilus"; break;
-                    case 3: Partner.Companion = "Carrier"; break;
-                }
-
-            } else if (CompanionChoice ==2) {
-                Console.WriteLine(" ");
-                Console.WriteLine("Choose a Beast:");
-                Console.WriteLine("[1] Smeeta - A Beast that provides buffs to its master for a short period of time.");
-                Console.WriteLine("[2] Sunika Kubrow - A dog- like beast that protects its master from enemies, capable " +
-                    "of launching thorns to enemies.");
-                Console.WriteLine("[3] Hound - a dog-like beast that has flames to its body and capable of " +
-                    "burning its surrounding up to 5 meters.");
-                Console.Write("Choice: ");
-                int BeastChoice = Convert.ToInt32(Console.ReadLine());
-
-                switch (BeastChoice) {
-                    case 1: Partner.Companion = "Smeeta"; break;
-                    case 2: Partner.Companion = "Sunika Kubrow"; break;
-                    case 3: Partner.Companion = "Hound"; break;
+            while (true) {
+                try {
+                    int CompanionChoice = Utility.ValidateChoices("Choose a Companion (1-2): ", 1, 2);
+                    if (CompanionChoice == 1) {
+                        Console.WriteLine(" ");
+                        Utility.DisplayOptions("Sentinel", SentinelOptions);
+                        int SentinelChoice = Utility.ValidateChoices("Choose a Sentinel (1-3): ", 1, 3);
+                        Partner.Companion = SentinelOptions[SentinelChoice - 1, 0];
+                    } else if (CompanionChoice == 2) {
+                        Console.WriteLine(" ");
+                        Utility.DisplayOptions("Beast", BeastOptions);
+                        int BeastChoice = Utility.ValidateChoices("Choose a Beast (1-3): ", 1, 3);
+                        Partner.Companion = BeastOptions[BeastChoice - 1, 0];
+                    } else {
+                        throw new Exception("Error!! Please choose 1 or 2");
+                    }
+                    break;
+                } catch (Exception e) {
+                    Console.WriteLine(e.Message);
                 }
             }
-
-            return Partner;
         }
 
-        public PrimaryWeapStruct GetPrimary() {
-            PrimaryWeapStruct PryWeap = new PrimaryWeapStruct();
+        public void GetPrimary() {
+            string[,] PrimaryWeaponOptions = {
+                {"Assault Rifle", "- A rapid-fire, military-grade firearm designed for both short and long-range " +
+                    "combat. It typically uses detachable magazines and is capable of firing in both semi-automatic " +
+                    "and fully automatic modes."},
+                {"Battle Rifle", "- A military firearm designed for longer-range combat than an assault rifle, " +
+                    "typically chambered for a larger caliber round. It is often semi-automatic or selective-fire, " +
+                    "offering higher accuracy and power for engaging targets at greater distances."},
+                {"Sniper Rifle", "- A precision firearm designed for long-range shooting, with high accuracy and " +
+                    "powerful optics, used by snipers for targeting distant or hidden enemies."},
+                {"Submachine Gun", "- A compact, fully automatic firearm that fires pistol-caliber rounds, designed " +
+                    "for close-range combat and high mobility."},
+                {"Laser Gun", "- A weapon that uses focused beams of light or energy to damage targets."},
+                {"Rail Gun", "- A weapon that uses electromagnetic forces to launch projectiles at extremely high " +
+                    "speeds, typically relying on powerful electric currents rather than traditional gunpowder."},
+                {"Plasma Gun", "- A futuristic weapon that fires superheated ionized gas (plasma) at high velocity."},
+                {"Blaster", "- An energy weapon that fires concentrated energy bolts, typically using technologies " +
+                    "like lasers or plasma to cause damage."},
+                {"Acceltra", "- A fast-firing rifle that fires a barrage of rapid plasma rockets."},
+                {"Torid", "- A grenade rifle that makes gas clouds dealing toxin damage."},
+                {"AX-52", "- A rifle that gains ammo efficiency while firing and high critical chance when aiming for headshots."}
+            };
 
             Console.WriteLine(" ");
-            Console.WriteLine("--Primary Weapons--");
-            Console.WriteLine("Choose a Primary:");
-            Console.WriteLine("[1] Assault Rifle - A rapid-fire, military-grade firearm designed for both short and " +
-                "long-range combat. It typically uses detachable magazines and is capable of firing in both semi-automatic and fully automatic modes.");
-            Console.WriteLine("[2] Battle Rifle - A military firearm designed for longer-range combat than an assault " +
-                "rifle, typically chambered for a larger caliber round. It is often semi-automatic or selective-fire, " +
-                "offering higher accuracy and power for engaging targets at greater distances.");
-            Console.WriteLine("[3] Sniper Rifle - A precision firearm designed for long-range shooting, with a high " + 
-                "accuracy and powerful optics, used by snipers for targeting distant or hidden enemies.");
-            Console.WriteLine("[4] Submachine Gun (SMGs) - is a compact, fully automatic firearm that fires " +
-                "pistol-caliber rounds, designed for close-range combat and high mobility.");
-            Console.WriteLine("[5] Laser Gun - A weapon that uses focused beams of light or energy to damage targets.");
-            Console.WriteLine("[6] Rail Gun - A weapon that uses electromagnetic forces to launch projectiles at " +
-                "extremely high speeds, typically relying on powerful electric currents rather than traditional gunpowder.");
-            Console.WriteLine("[7] Plasma Gun - A futuristic weapon that fires superheated ionized gas (plasma) at high velocity.");
-            Console.WriteLine("[8] Blaster - A energy weapon that fires concentrated energy bolts, typically " +
-                "using technologies like lasers or plasma to cause damage.");
-            Console.WriteLine("[9] Acceltra - A Fast firing rifle that fires a barrage of rapid - plasma rockets.");
-            Console.WriteLine("[10] Torid - A grenade rifle that makes gas clouds dealing toxin damage.");
-            Console.WriteLine("[11] AX - 52 - A rifle that when firing gained an ammo efficiency and when aiming " +
-                "headshot gained high critical chance.");
-            Console.Write("Choice: ");
-            int PWeapChoice = Convert.ToInt32(Console.ReadLine());
+            Utility.DisplayOptions("Primary Weapons", PrimaryWeaponOptions);
+            int PrimaryWeaponChoice = Utility.ValidateChoices("Choose a Primary Weapon (1-11): ", 1, 11);
 
-            switch (PWeapChoice) {
-                case 1: PryWeap.PrimaryWeap = "Assault Rifle"; break;
-                case 2: PryWeap.PrimaryWeap = "Battle Rifle"; break;
-                case 3: PryWeap.PrimaryWeap = "Sniper Rifle"; break;
-                case 4: PryWeap.PrimaryWeap = "Submachine Gun"; break;
-                case 5: PryWeap.PrimaryWeap = "Laser Gun"; break;
-                case 6: PryWeap.PrimaryWeap = "Rail Gun"; break;
-                case 7: PryWeap.PrimaryWeap = "Plasma Gun"; break;
-                case 8: PryWeap.PrimaryWeap = "Blaster"; break;
-                case 9: PryWeap.PrimaryWeap = "Blaster"; break;
-                case 10: PryWeap.PrimaryWeap = "Torid"; break;
-                case 11: PryWeap.PrimaryWeap = "AX-52"; break;
-            }
-
-            return PryWeap;
+            PryWeap.PrimaryWeap = PrimaryWeaponOptions[PrimaryWeaponChoice - 1, 0];
         }
 
-        public SecondaryWeapStruct GetSecondary() {
-            SecondaryWeapStruct SdryWeap = new SecondaryWeapStruct();
-
+        public void GetSecondary() {
             Console.WriteLine(" ");
             Console.WriteLine("--Secondary Weapons--");
             Console.WriteLine("Choose a Secondary:");
@@ -453,13 +368,9 @@ namespace CharCreate {
                 case 5: SdryWeap.SecondaryWeap = "Mauser Pistol"; break;
                 case 6: SdryWeap.SecondaryWeap = "Kompressa"; break;
             }
-
-            return SdryWeap;
         }
 
-        public MeleeStruct GetMelee() {
-            MeleeStruct Melee = new MeleeStruct();
-
+        public void GetMelee() {
             Console.WriteLine(" ");
             Console.WriteLine("--Melee Weapons--");
             Console.WriteLine("Choose a Melee:");
@@ -494,13 +405,9 @@ namespace CharCreate {
                 case 9: Melee.MeleeWeap = "Ceramic Dagger"; break;
                 case 10: Melee.MeleeWeap = "Lightsaber"; break;
             }
-
-            return Melee;
         }
 
-        public GrenadeStruct GetGrenade() {
-            GrenadeStruct Grenade = new GrenadeStruct();
-
+        public void GetGrenade() {
             Console.WriteLine(" ");
             Console.WriteLine("--Grenades--");
             Console.WriteLine("Choose a Grenede:");
@@ -536,8 +443,6 @@ namespace CharCreate {
                 case 8: Grenade.GrenadeWeap = "Vortex Bomb"; break;
                 case 9: Grenade.GrenadeWeap = "Gravitational Grenade"; break;
             }
-
-            return Grenade;
         }
     }
 }

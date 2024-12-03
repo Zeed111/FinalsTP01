@@ -1,7 +1,7 @@
-using System;
+using CharacterStructure;
 
 namespace Stats {
-    public class AllocateStatPoints {
+    public class AllocateStatPoints : IDisplayInfo {
         private int Strength { get; set; }
         private int Dexterity { get; set; }
         private int Constitution { get; set; }
@@ -21,23 +21,23 @@ namespace Stats {
             Console.WriteLine($"You have {AllocationPoints} points to allocate across the following stats.");
             Console.WriteLine($"Each stat have maximum points of {MaxPoints}.");
            
-           Strength = GetStatsPoints("Strength");
-           if (RemainingPoints == 0) { AutoAllocate(); return; }
+            Strength = GetStatsPoints("Strength");
+            if (RemainingPoints == 0) { AutoAllocate(); return; }
 
-           Dexterity = GetStatsPoints("Dexterity");
-           if (RemainingPoints == 0) { AutoAllocate(); return; }
+            Dexterity = GetStatsPoints("Dexterity");
+            if (RemainingPoints == 0) { AutoAllocate(); return; }
 
-           Constitution = GetStatsPoints("Constitution");
-           if (RemainingPoints == 0) { AutoAllocate(); return; }
+            Constitution = GetStatsPoints("Constitution");
+            if (RemainingPoints == 0) { AutoAllocate(); return; }
 
-           Intelligence = GetStatsPoints("Intelligence");
-           if (RemainingPoints == 0) { AutoAllocate(); return; }
+            Intelligence = GetStatsPoints("Intelligence");
+            if (RemainingPoints == 0) { AutoAllocate(); return; }
 
-           Wisdom = GetStatsPoints("Wisdom");
-           if (RemainingPoints == 0) { AutoAllocate();return; }
+            Wisdom = GetStatsPoints("Wisdom");
+            if (RemainingPoints == 0) { AutoAllocate();return; }
 
-           Charisma = GetStatsPoints("Charisma");
-           if (RemainingPoints == 0) { AutoAllocate(); return; } 
+            Charisma = GetStatsPoints("Charisma");
+            if (RemainingPoints == 0) { AutoAllocate(); return; } 
         }
 
         public int GetStatsPoints(string  StatName) {
@@ -59,10 +59,10 @@ namespace Stats {
                         RemainingPoints -= Points;
                         return Points;
                     }
-                } catch (FormatException ) {
-                    Console.WriteLine("Number only!!");
-                } catch (Exception) {
-                    Console.WriteLine("Error!!");
+                } catch (FormatException fe) {
+                    Console.WriteLine(fe.Message);
+                } catch (Exception e) {
+                    Console.WriteLine(e.Message);
                 }
             }
         }
