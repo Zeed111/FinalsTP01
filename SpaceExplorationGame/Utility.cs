@@ -22,13 +22,13 @@ public static class Utility {
 
             try {
                 if (!regex.IsMatch(Input)) {
-                    throw new Exception("Error!! Please Enter Number Only");
+                    throw new Exception("Error!! Please Enter Number Only\n");
                 }
 
                 Choice = Convert.ToInt32(Input);
 
                 if (Choice < Min || Choice > Max) {
-                    throw new Exception($"Error!! Please a number between {Min} to {Max} only!!");
+                    throw new Exception($"Error!! Please a number between {Min} to {Max} only!!\n");
                 }
 
                 return Choice;

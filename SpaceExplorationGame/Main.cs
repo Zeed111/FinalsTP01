@@ -1,4 +1,5 @@
 ﻿using System;
+using CharacterAbstruct;
 using CharCreate;
 using Stats;
 
@@ -40,7 +41,7 @@ public class SpaceExplorationGame {
     }
 
     public static void NewGame() {
-        CharacterCreation Create = new CharacterCreation();
+        Character Create = new CharacterCreation();
         AllocateStatPoints CharStat = new AllocateStatPoints();
 
         Create.GetBasicAttributes();
@@ -50,11 +51,11 @@ public class SpaceExplorationGame {
         Create.GetSpecialPower();
         Create.GetCompanion();
         Create.GetPrimary();
-        //Create.GetSecondary();
-        //Create.GetMelee();
-        //Create.GetGrenade();
+        Create.GetSecondary();
+        Create.GetMelee();
+        Create.GetGrenade();
 
-        CharStat.AskStats();
+        Create.CharacterStats(CharStat);
         Create.Attributes.Display();
         Create.World.Display();
         Create.Role.Display();
@@ -62,6 +63,9 @@ public class SpaceExplorationGame {
         Create.SP.Display();
         Create.Partner.Display();
         Create.PryWeap.Display();
+        Create.SdryWeap.Display();  
+        Create.Melee.Display();
+        Create.Grenade.Display();
         CharStat.Display();
 
         Console.WriteLine("Loading....");

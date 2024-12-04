@@ -50,11 +50,12 @@ namespace Stats {
                     int Points = Convert.ToInt32(Console.ReadLine());
 
                     if (Points < 0) {
-                        throw new Exception("Points must be greater or equal than 0.");
+                        throw new Exception("Points must be greater or equal to 0.\n");
                     } else if (Points > MaxPoints) {
-                        throw new Exception("You cannot exceed over 10.");
+                        throw new Exception("You cannot exceed over 10.\n");
                     } else if (Points > RemainingPoints) {
-                        throw new Exception($"You only have {RemainingPoints} remaining.");
+                        throw new Exception($"You only have {RemainingPoints} remaining.\n");
+                        
                     } else {
                         RemainingPoints -= Points;
                         return Points;
