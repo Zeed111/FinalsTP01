@@ -25,10 +25,5 @@ namespace CharacterAbstruct {
         public abstract void GetSecondary();
         public abstract void GetMelee();
         public abstract void GetGrenade();
-
-        public static implicit operator Character(AllocateStatPoints v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

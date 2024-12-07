@@ -2,12 +2,12 @@ using CharacterStructure;
 
 namespace Stats {
     public class AllocateStatPoints : IDisplayInfo {
-        private int Strength { get; set; }
-        private int Dexterity { get; set; }
-        private int Constitution { get; set; }
-        private int Intelligence { get; set; }
-        private int Wisdom { get; set; }
-        private int Charisma { get; set; }
+        public int Strength { get; set; }
+        public int Dexterity { get; set; }
+        public int Constitution { get; set; }
+        public int Intelligence { get; set; }
+        public int Wisdom { get; set; }
+        public int Charisma { get; set; }
         private int RemainingPoints { get; set; }
         private const int MaxPoints = 10;
         private const int AllocationPoints = 20;
@@ -23,19 +23,19 @@ namespace Stats {
            
             Strength = GetStatsPoints("Strength");
             if (RemainingPoints == 0) { AutoAllocate(); return; }
-
+            
             Dexterity = GetStatsPoints("Dexterity");
             if (RemainingPoints == 0) { AutoAllocate(); return; }
-
+            
             Constitution = GetStatsPoints("Constitution");
             if (RemainingPoints == 0) { AutoAllocate(); return; }
-
+            
             Intelligence = GetStatsPoints("Intelligence");
             if (RemainingPoints == 0) { AutoAllocate(); return; }
-
+            
             Wisdom = GetStatsPoints("Wisdom");
             if (RemainingPoints == 0) { AutoAllocate();return; }
-
+            
             Charisma = GetStatsPoints("Charisma");
             if (RemainingPoints == 0) { AutoAllocate(); return; } 
         }
@@ -50,14 +50,17 @@ namespace Stats {
                     int Points = Convert.ToInt32(Console.ReadLine());
 
                     if (Points < 0) {
+                        Console.Clear();
                         throw new Exception("Points must be greater or equal to 0.\n");
                     } else if (Points > MaxPoints) {
+                        Console.Clear();
                         throw new Exception("You cannot exceed over 10.\n");
                     } else if (Points > RemainingPoints) {
+                        Console.Clear();
                         throw new Exception($"You only have {RemainingPoints} remaining.\n");
-                        
                     } else {
                         RemainingPoints -= Points;
+                        Console.Clear();
                         return Points;
                     }
                 } catch (FormatException fe) {

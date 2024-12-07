@@ -2,11 +2,14 @@
 using CharacterAbstruct;
 using CharCreate;
 using Stats;
+using SpaceExplorationGameDatabase;
 
 public class SpaceExplorationGame {
     public static void Main(string[] args) {
+        Database Connect = new Database();
+        Connect.Connection();
         while (true) {
-            Console.WriteLine("-----Space Exploration Game-----");
+            Console.WriteLine("-----The Six keys of Destiny-----");
             Console.WriteLine("[1] New Game");
             Console.WriteLine("[2] Load Game");
             Console.WriteLine("[3] Campaign");
@@ -19,12 +22,19 @@ public class SpaceExplorationGame {
 
                 switch (choice) {
                     case 1:
+                        Console.Clear();
                         NewGame();
                         break;
+                    case 2:
+                        Console.Clear();
+                        LoadGame();
+                        break;
                     case 3:
+                        Console.Clear();
                         Campaign();
                         break;
                     case 4:
+                        Console.Clear();
                         Credits();
                         break;   
                     case 5:
@@ -33,9 +43,15 @@ public class SpaceExplorationGame {
                     default:
                         throw new Exception("Error!! Please choose between 1 to 5");        
                 }
-            } catch (Exception) {
-                Console.WriteLine(" ");
-                Console.WriteLine("Please enter a number!");
+            } catch (Exception e) {
+                Console.WriteLine(e.Message);
+                Thread.Sleep(2000);
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                Console.WriteLine(new string(' ', Console.WindowWidth));
+
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
+                Console.Clear();
             }
         }
     }
@@ -43,19 +59,32 @@ public class SpaceExplorationGame {
     public static void NewGame() {
         Character Create = new CharacterCreation();
         AllocateStatPoints CharStat = new AllocateStatPoints();
+        var DBInsert = new Database();
 
+        Console.Clear();
         Create.GetBasicAttributes();
+        Console.Clear();
         Create.GetHomeWorld();
+        Console.Clear();
         Create.GetOccupation();
+        Console.Clear();
         Create.GetApperance();
+        Console.Clear();
         Create.GetSpecialPower();
+        Console.Clear();
         Create.GetCompanion();
+        Console.Clear();
         Create.GetPrimary();
+        Console.Clear();
         Create.GetSecondary();
+        Console.Clear();
         Create.GetMelee();
+        Console.Clear();
         Create.GetGrenade();
-
+        Console.Clear();
         Create.CharacterStats(CharStat);
+        Console.Clear();
+
         Create.Attributes.Display();
         Create.World.Display();
         Create.Role.Display();
@@ -68,6 +97,43 @@ public class SpaceExplorationGame {
         Create.Grenade.Display();
         CharStat.Display();
 
+        string TableName = "characters";
+
+        var CharacterData = new Dictionary<string, object> {
+            {"species", Create.Attributes.Species},
+            {"gender", Create.Attributes.Gender},
+            {"age", Create.Attributes.Age},
+            {"home_world", Create.World.HomeWorld},
+            {"occupation", Create.Role.Occupation},
+            {"hair_color", Create.Look.HairColor},
+            {"hair_type", Create.Look.HairType},
+            {"eye_color", Create.Look.EyeColor},
+            {"skin_tone", Create.Look.SkinTone},
+            {"head_accessory", Create.Look.HeadAccessory},
+            {"body_accessory", Create.Look.BodyAccessory},
+            {"arm_accessory", Create.Look.ArmAccessory},
+            {"leg_accessory", Create.Look.LegAccessory},
+            {"tail", Create.Look.Tail},
+            {"aura", Create.Look.Aura},
+            {"special_power", Create.SP.SpecialPower},
+            {"companion", Create.Partner.Companion},
+            {"primary_weap", Create.PryWeap.PrimaryWeap},
+            {"secondary_weap", Create.SdryWeap.SecondaryWeap},
+            {"melee", Create.Melee.MeleeWeap},
+            {"grenade", Create.Grenade.GrenadeWeap},
+            {"strength", CharStat.Strength},
+            {"dexterity", CharStat.Dexterity},
+            {"constitution", CharStat.Constitution},
+            {"intelligence", CharStat.Intelligence},
+            {"wisdom", CharStat.Wisdom},
+            {"charisma", CharStat.Charisma},
+
+        };
+
+        bool Success = DBInsert.Create(TableName, CharacterData);
+
+        Console.WriteLine(Success ? "Your Character is Saved" : "Failed to save your Character" );
+
         Console.WriteLine("Loading....");
         Thread.Sleep(2000);
         Console.SetCursorPosition(0, Console.CursorTop - 1);
@@ -76,6 +142,11 @@ public class SpaceExplorationGame {
         Console.WriteLine("Press any key to go back to main menu.");
         Console.ReadKey();
         Console.Clear();
+    }
+
+    public static void LoadGame() {
+        var DBDelete = new Database();
+
     }
 
     public static void Campaign() {

@@ -19,7 +19,7 @@ public static class Utility {
        while (true) {
             Console.Write(Propmt);
             Input = Console.ReadLine();
-
+            
             try {
                 if (!regex.IsMatch(Input)) {
                     throw new Exception("Error!! Please Enter Number Only\n");
