@@ -9,15 +9,13 @@ namespace CharCreate {
         public override HomeWorldStruct World { get; set; } = new HomeWorldStruct("Unknown");
         public override OccupationStruct Role { get; set; } = new OccupationStruct("Unknown");
         public override ApperanceStruct Look { get; set; } = new ApperanceStruct("Unknown", "Unknown", "Unknown", "Unknown", "Unknown", 
-                                                                            "Unknown", "Unknown", "Unknown", "Unknown", "Unknown");
+            "Unknown", "Unknown", "Unknown", "Unknown", "Unknown");
         public override SpecialPowerStruct SP { get; set; } = new SpecialPowerStruct("Unknown");
         public override CompanionStruct Partner { get; set; } = new CompanionStruct("Unknown");
         public override PrimaryWeapStruct PryWeap { get; set; } = new PrimaryWeapStruct("Unknown");
         public override SecondaryWeapStruct SdryWeap { get; set; } = new SecondaryWeapStruct("Unknown");
         public override MeleeStruct Melee { get; set; } = new MeleeStruct("Unknown");
         public override GrenadeStruct Grenade { get; set; } = new GrenadeStruct("Unknown");
-
-
 
         public override void GetBasicAttributes() {
             string[,] SpeciesOptions = {
