@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
@@ -40,13 +41,11 @@ namespace SpaceExplorationGameDatabase {
                 }
 
                 string Query = $"INSERT INTO {TableName} ({string.Join(", ", Columns)}) VALUES ({string.Join(", ", Values)})";
-                Console.WriteLine("Generated Query: " + Query);
 
                 try {
                     using (MySqlCommand Command = new MySqlCommand(Query, mySqlConnection)) {
                         Command.Parameters.AddRange(Parameters.ToArray());
                         int Result = Command.ExecuteNonQuery();
-                        Console.WriteLine("Rows Affected: " + Result);
                         return Result > 0;
                     }
                 } catch(Exception e) {
@@ -78,8 +77,47 @@ namespace SpaceExplorationGameDatabase {
             }        
         }
 
-        //public List<Dictionary<string, object>> GetData() {
+        public List<Dictionary<string, object>> GetData(string TableName, string WhereQuery = "", string WhereData = "") {
+            List<Dictionary<string, object>> Result = new List<Dictionary<string, object>>();
 
-        //}
+            using (MySqlConnection MySqlConnection = Connection()) {
+                if (MySqlConnection == null) {
+                    Console.WriteLine("Connection Failed!!!");
+                    return Result;
+                }
+
+                try {
+                    string Query = $"SELECT * FROM {TableName} {WhereQuery}";
+
+                    using (MySqlCommand Command = new MySqlCommand(Query, MySqlConnection)) {
+                        if (!string.IsNullOrEmpty(WhereQuery)) {
+                            string[] WhereString = WhereData.Split(',');
+                            for (int i = 0; i < WhereString.Length; i++) {
+                                if (!string.IsNullOrEmpty(WhereString[i])) { 
+                                    Command.Parameters.AddWithValue($"param{i + 1}", WhereString[i]);
+                                }
+                            }
+                        }
+                        using (MySqlDataReader Reader = Command.ExecuteReader()) {
+                            var ColumnCount = Reader.FieldCount;
+
+                            while (Reader.Read()) {
+                                var Row = new Dictionary<string, object>();
+
+                                for (int i = 0; i < ColumnCount; i++) {
+                                    string ColumnName = Reader.GetName(i);
+                                    object Value = Reader.IsDBNull(i) ? null : Reader.GetValue(i);
+                                    Row.Add(ColumnName, Value);
+                                }
+                                Result.Add(Row);
+                            }
+                        }
+                    }
+                } catch (Exception e) { 
+                    Console.WriteLine(e.Message);
+                }
+                return Result;
+            }
+        }
     }
 }

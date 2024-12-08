@@ -3,6 +3,9 @@ using CharacterAbstruct;
 using CharCreate;
 using Stats;
 using SpaceExplorationGameDatabase;
+using System.Runtime.InteropServices;
+using System.Diagnostics.Eventing.Reader;
+using System.Diagnostics.Contracts;
 
 public class SpaceExplorationGame {
     public static void Main(string[] args) {
@@ -145,8 +148,141 @@ public class SpaceExplorationGame {
     }
 
     public static void LoadGame() {
-        var DBDelete = new Database();
+        var DB = new Database();
+        string Tablename = "characters";
 
+        while (true) {
+            Console.Clear();
+            Console.WriteLine("-----Load Game-----");
+            Console.WriteLine("[1] Load Saved Character");
+            Console.WriteLine("[2] Go to Main Menu");
+            Console.Write("Choice: ");
+
+            try {
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice) {
+                    case 1:
+                        Console.Clear();
+                        LoadChar(DB, Tablename);
+                        break;
+                    case 2:
+                        Console.Clear();
+                        return;
+                    default:
+                        throw new Exception("Error!! Please choose between 1 to 2");
+                }
+            } catch (Exception e) {
+                Console.WriteLine(e.Message);
+                Thread.Sleep(2000);
+                Console.SetCursorPosition(0, Console.CursorTop - 1);
+                Console.WriteLine(new string(' ', Console.WindowWidth));
+
+                Console.WriteLine("Press any key to continue.");
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+    }
+
+    public static void LoadChar(Database DB, string TableName) {
+        try {
+            var Data = DB.GetData(TableName);
+
+            if (Data.Count == 0) {
+                Console.WriteLine("No saved characters found!");
+                Console.WriteLine("Press any key to return to the menu.");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.WriteLine("----Saved Characters-----");
+            for (int i = 0; i < Data.Count; i++) { 
+                Console.WriteLine($"[{i + 1}] Character {i + 1}: {Data[i] ["species"]}");
+            }
+
+            Console.WriteLine("Select a number to view the details of the character: ");
+            Console.Write("Choice: ");
+            if (int.TryParse(Console.ReadLine(), out int Value) && Value >= 1 && Value <= Data.Count) { 
+                var Character = Data[Value - 1];
+                Console.Clear();
+                Console.WriteLine("-----Character Detail-----");
+                foreach (var Column in Character) {
+                    string DisplayName = Column.Key switch {
+                        "id" => "ID",
+                        "species" => "Species",
+                        "gender" => "Gender",
+                        "age" => "Age",
+                        "home_world" => "HomeWorld",
+                        "occupation" => "Occupation",
+                        "hair_color" => "HairColor",
+                        "hair_type" => "HairType",
+                        "eye_color" => "EyeColor",
+                        "skin_tone" => "Skin one",
+                        "head_accessory" => "HeadAccessory",
+                        "body_accessory" => "BodyAccessory",
+                        "arm_accessory" => "ArmAccessory",
+                        "leg_accessory" => "LegAccessory",
+                        "tail" => "Tail",
+                        "aura" => "Aura",
+                        "special_power" => "SpecialPower",
+                        "companion" => "Companion",
+                        "primary_weap" => "PrimaryWeapon",
+                        "secondary_weap" => "SecondaryWeapon",
+                        "melee" => "Melee",
+                        "grenade" => "Grenade",
+                        "strength" => "Strength",
+                        "dexterity" => "Dexterity",
+                        "constitution" => "Constitution",
+                        "intelligence" => "Intelligence",
+                        "wisdom" => "Wisdom",
+                        "charisma" => "Charisma",
+                        _ => Column.Key
+                    };
+
+                    Console.WriteLine($"{DisplayName}: {Column.Value}");
+                }
+
+                Console.WriteLine("Press 1 to DELETE or Press any key to return to the menu.");
+                Console.Write("Choice: ");
+                string WantToDelete = Console.ReadLine();
+
+                if (WantToDelete == "1") {
+                    Console.WriteLine("Type 'CONFIRM' to delete this character.");
+                    Console.Write("Choice: ");
+                    string ConfirmDelete = Console.ReadLine();
+                    if (ConfirmDelete == "CONFIRM") {
+                        int Id = Convert.ToInt32(Character["id"]);
+                        if (DB.Delete(TableName, Id)) {
+                            Console.Clear();
+                            Console.WriteLine("Deleted Successfully!!!!");
+                            Console.WriteLine("Press any key to return to the menu.");
+                            Console.ReadKey();
+                        } else {
+                            Console.WriteLine("Failed to Delete!!!");
+                        }
+                    } else {
+                        Console.Clear();
+                        Console.WriteLine("Cancelled!!");
+                        Console.WriteLine(" ");
+                        Console.WriteLine("Press any key to return to the menu.");
+                        Console.ReadKey();
+                    }
+                } else {
+                    Thread.Sleep(1);
+                }
+            } else {
+                Console.Clear();
+                Console.WriteLine("Error!!!");
+                Console.WriteLine(" ");
+                Console.WriteLine("Press any key to return to the menu.");
+                Console.ReadKey();
+            }
+        } catch (Exception e) { 
+            Console.WriteLine("There is an error while loading you character!!" + e.Message);
+            Console.WriteLine("Press any key to return to the menu.");
+            Console.ReadKey();
+        }
     }
 
     public static void Campaign() {
