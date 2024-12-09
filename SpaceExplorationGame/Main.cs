@@ -286,15 +286,21 @@ public class SpaceExplorationGame {
     }
 
     public static void Campaign() {
+        Console.WriteLine("-----Campaign-----");
         Console.WriteLine("");
-        Console.WriteLine($"In a distant galaxy, a person embarked on a mission\n" + 
+        string Paragraph1 = $"In a distant galaxy, a person embarked on a mission\n" + 
             "to save their sibling, taken by a powerful organization obsessed with\n" + 
             "controlling The Laugh Tail, a planet where no one had ever survived.\n" + 
             "Legends spoke of its gates, sealed by six keys scattered across the\n" + 
             "galaxy. The first stop was Ashara, a high-tech world of towering\n" + 
             "cities and advanced AI. Navigating complex digital networks, the\n" + 
             "person earned the trust of Ashara’s sentient AI and secured the first\n" + 
-            "key. With newfound cyber-skills, they set out, knowing greater challenges lay ahead.");
+            "key. With newfound cyber-skills, they set out, knowing greater challenges lay ahead.";
+
+        foreach (char Letter in Paragraph1) {
+            Console.Write(Letter);
+            Thread.Sleep(45);
+        }
 
         Console.WriteLine("");
         Console.WriteLine("Loading....");
@@ -302,56 +308,76 @@ public class SpaceExplorationGame {
         Console.SetCursorPosition(0, Console.CursorTop - 1);
         Console.WriteLine(new string(' ', Console.WindowWidth));
 
-        Console.WriteLine($"Next, they arrived on Pyros IX, a desert planet ruled by relentless\n" +
+        string Paragraph2 = $"Next, they arrived on Pyros IX, a desert planet ruled by relentless\n" +
             "sandstorms and fierce nomadic tribes. The tribes, who revered the second\n" +
             "key as sacred, tested the person’s resolve through brutal survival trials.\n" +
             "After mastering desert warfare and proving their strength, the person earned\n" +
             "the tribes' respect and the key. On Vextris, a toxic wasteland plagued by acid\n" +
             "rains and monstrous mutations, their endurance was tested further. Battling the\n" +
             "harsh environment and mutated creatures, they unearthed the third key from the\n" +
-            "ruins of a forgotten civilization.");
-        
+            "ruins of a forgotten civilization.";
+
+        foreach (char Letter in Paragraph2) {
+            Console.Write(Letter);
+            Thread.Sleep(45);
+        }
+
         Console.WriteLine("");
         Console.WriteLine("Loading....");
         Thread.Sleep(5000);
         Console.SetCursorPosition(0, Console.CursorTop - 1);
         Console.WriteLine(new string(' ', Console.WindowWidth));
 
-        Console.WriteLine($"The journey then led to Auralis, a brutal prison planet where chaos\n" + 
+        string Paragraph3 = $"The journey then led to Auralis, a brutal prison planet where chaos\n" + 
             "reigned and violence was law. To claim the fourth key, the person infiltrated\n" + 
             "the prison hierarchy, forming uneasy alliances with the most dangerous inmates.\n" + 
             "Enduring brutal combat and navigating deadly power struggles, they emerged\n" + 
             "victorious, key in hand. From Auralis, they traveled to Noctivis, an opulent\n" + 
             "orbital ring world where luxury hid corruption. Using diplomacy and deception,\n" + 
             "they maneuvered through political intrigue, securing the fifth key through\n" + 
-            "cunning and wit.");
+            "cunning and wit.";
+
+        foreach (char Letter in Paragraph3) {
+            Console.Write(Letter);
+            Thread.Sleep(45);
+        }
 
         Console.WriteLine("");
         Console.WriteLine("Loading....");
         Thread.Sleep(5000);  
         Console.SetCursorPosition(0, Console.CursorTop - 1);
         Console.WriteLine(new string(' ', Console.WindowWidth));
-        
-        Console.WriteLine("Their final stop before The Laugh Tail was Valtoria, the galaxy’s financial\n" + 
+
+        string Paragraph4 = "Their final stop before The Laugh Tail was Valtoria, the galaxy’s financial\n" + 
             "hub, where wealth dictated power. The final key was locked in the vaults of\n" + 
             "Valtoria’s most powerful factions, requiring both strategy and risk. In a daring\n" + 
             "heist, the person outwitted the planet’s elite and secured the last key. With all\n" + 
             "six keys now in their possession, they prepared for the ultimate challenge. They\n" + 
             "knew the gates of The Laugh Tail would soon open, leading them to a fate no one\n" + 
-            "else had survived.");
+            "else had survived.";
+
+        foreach (char Letter in Paragraph4) {
+            Console.Write(Letter);
+            Thread.Sleep(45);
+        }
 
         Console.WriteLine("");
         Console.WriteLine("Loading....");
         Thread.Sleep(5000);    
         Console.SetCursorPosition(0, Console.CursorTop - 1);
         Console.WriteLine(new string(' ', Console.WindowWidth));
-        
-        Console.WriteLine("Standing at the gates of The Laugh Tail, the person felt the weight of their\n" + 
+
+        string Paragraph5 = "Standing at the gates of The Laugh Tail, the person felt the weight of their\n" + 
             "journey, but fear did not stop them. The fate of their sibling and the promise\n" + 
             "of survival drove them forward, ready to face whatever waited beyond. They had\n" + 
             "leveled up through every trial, mastering new skills and gaining allies in\n" + 
             "unexpected places. With a deep breath, they unlocked the gates, stepping into\n" + 
-            "the unknown. What lay ahead would test everything they had become.");
+            "the unknown. What lay ahead would test everything they had become.";
+
+        foreach (char Letter in Paragraph5) {
+            Console.Write(Letter);
+            Thread.Sleep(45);
+        }
 
         Console.WriteLine("");
         Console.WriteLine("Loading....");
@@ -372,10 +398,15 @@ public class SpaceExplorationGame {
         Console.SetCursorPosition(0, Console.CursorTop - 1);
         Console.WriteLine(new string(' ', Console.WindowWidth));
 
-        Console.WriteLine("-----Raven Villanueva-----");
-        Console.WriteLine("-----Lenardo Jualo------");
-        Console.WriteLine("-----Daniel Gutierrez-------");
+        string Credits = "-----Raven Villanueva-----\n" + "-----Daniel Gutierrez-------\n" + "-----Lenardo Jualo------";
 
+        Console.WriteLine("-----Creators of the Game-----");
+
+        foreach (char Letter in Credits) {
+            Console.Write(Letter);
+            Thread.Sleep(150);
+        } 
+        
         Console.WriteLine("");
         Console.WriteLine("Loading....");
         Thread.Sleep(2000);

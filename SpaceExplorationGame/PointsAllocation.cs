@@ -20,7 +20,14 @@ namespace Stats {
             Console.WriteLine(" ");
             Console.WriteLine($"You have {AllocationPoints} points to allocate across the following stats.");
             Console.WriteLine($"Each stat have maximum points of {MaxPoints}.");
-           
+
+            Console.WriteLine("Strength - Physical Power");
+            Console.WriteLine("Dexterity - Agility & Coordination");
+            Console.WriteLine("Constitution - Health & Resilience");
+            Console.WriteLine("Intelligence - Reasoning & Knowledge");
+            Console.WriteLine("Wisdom - Perception & Insight");
+            Console.WriteLine("Charisma - Leadership & Persuation");
+
             Strength = GetStatsPoints("Strength");
             if (RemainingPoints == 0) { AutoAllocate(); return; }
             
