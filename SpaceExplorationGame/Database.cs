@@ -15,7 +15,11 @@ namespace SpaceExplorationGameDatabase {
                 string MySqlCon = "server=127.0.0.1; user=root; Database=characterdatabase; password=";
                 MySqlConnection mySqlConnection = new MySqlConnection(MySqlCon);
                 mySqlConnection.Open();
-                Console.WriteLine("Success");
+                Console.WriteLine("Loading....");
+                Thread.Sleep(2000);
+                Console.Clear();
+                Console.WriteLine("\x1b[3J");
+                Console.WriteLine("Connected to Server");
                 return mySqlConnection;
             } catch (Exception ex) {
                 Console.WriteLine(ex.Message);
@@ -67,7 +71,6 @@ namespace SpaceExplorationGameDatabase {
                     using (MySqlCommand Command = new MySqlCommand(Query, MySqlConnection)) {
                         Command.Parameters.AddWithValue("id", Id);
                         int Result = Command.ExecuteNonQuery();
-                        Console.WriteLine("Rows Affected: " + Result);
                         return Result > 0;
                     }
                 } catch (Exception e) {
