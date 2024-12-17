@@ -11,6 +11,7 @@ public class SpaceExplorationGame {
     public static void Main(string[] args) {
         Database Connect = new Database();
         Connect.Connection();
+
         while (true) {
             Console.WriteLine("-----The Six keys of Destiny-----");
             Console.WriteLine("[1] New Game");
@@ -22,22 +23,20 @@ public class SpaceExplorationGame {
 
             try {
                 int choice = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+                Console.WriteLine("\x1b[3J");
 
                 switch (choice) {
                     case 1:
-                        Console.Clear();
                         NewGame();
                         break;
                     case 2:
-                        Console.Clear();
                         LoadGame();
                         break;
                     case 3:
-                        Console.Clear();
                         Campaign();
                         break;
                     case 4:
-                        Console.Clear();
                         Credits();
                         break;   
                     case 5:
@@ -55,6 +54,7 @@ public class SpaceExplorationGame {
                 Console.WriteLine("Press any key to continue.");
                 Console.ReadKey();
                 Console.Clear();
+                Console.WriteLine("\x1b[3J");
             }
         }
     }
@@ -65,6 +65,7 @@ public class SpaceExplorationGame {
         var DBInsert = new Database();
 
         Console.Clear();
+        Console.WriteLine("\x1b[3J");
         Create.GetBasicAttributes();
         Console.Clear();
         Create.GetHomeWorld();
@@ -133,7 +134,17 @@ public class SpaceExplorationGame {
 
         };
 
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+        Console.Clear();
+        Console.WriteLine("\x1b[3J");
+
         bool Success = DBInsert.Create(TableName, CharacterData);
+
+        Console.WriteLine("Loading....");
+        Thread.Sleep(2000);
+        Console.SetCursorPosition(0, Console.CursorTop - 1);
+        Console.WriteLine(new string(' ', Console.WindowWidth));
 
         Console.WriteLine(Success ? "Your Character is Saved" : "Failed to save your Character" );
 
@@ -145,6 +156,7 @@ public class SpaceExplorationGame {
         Console.WriteLine("Press any key to go back to main menu.");
         Console.ReadKey();
         Console.Clear();
+        Console.WriteLine("\x1b[3J");
     }
 
     public static void LoadGame() {
@@ -153,6 +165,7 @@ public class SpaceExplorationGame {
 
         while (true) {
             Console.Clear();
+            Console.WriteLine("\x1b[3J");
             Console.WriteLine("-----Load Game-----");
             Console.WriteLine("[1] Load All Saved Character");
             Console.WriteLine("[2] Load Specific Saved Character");
@@ -161,18 +174,17 @@ public class SpaceExplorationGame {
 
             try {
                 int choice = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+                Console.WriteLine("\x1b[3J");
 
                 switch (choice) {
                     case 1:
-                        Console.Clear();
                         LoadCharAll(DB, Tablename);
                         break;
                     case 2:
-                        Console.Clear();
                         LoadChar(DB, Tablename);
                         break;
                     case 3:
-                        Console.Clear();
                         return;
                     default:
                         throw new Exception("Error!! Please choose between 1 to 3");
@@ -202,7 +214,11 @@ public class SpaceExplorationGame {
             }
 
             int CharCount = 1;
+            Console.WriteLine("Loading.....");
+            Thread.Sleep(2000);
             Console.Clear();
+            Console.WriteLine("\x1b[3J");
+
             foreach (var Character in Data) {
                 Console.WriteLine($"-----Character {CharCount}-----");
                 CharCount++;
@@ -253,7 +269,10 @@ public class SpaceExplorationGame {
 
             Console.WriteLine("Press any key to return to the menu.");
             Console.ReadKey();
+            Console.WriteLine("Loading...");
+            Thread.Sleep(2000);
             Console.Clear();
+            Console.WriteLine("\x1b[3J");
 
         } catch (Exception e) {
             Console.WriteLine("There is an error while loading you character!!" + e.Message);
@@ -273,8 +292,12 @@ public class SpaceExplorationGame {
                 return;
             }
 
+            Console.WriteLine("Loading.....");
+            Thread.Sleep(2000);
             Console.Clear();
+            Console.WriteLine("\x1b[3J");
             Console.WriteLine("----Saved Characters-----");
+
             for (int i = 0; i < Data.Count; i++) { 
                 Console.WriteLine($"[{i + 1}] Character {i + 1}: {Data[i] ["species"]}");
             }
@@ -284,6 +307,7 @@ public class SpaceExplorationGame {
             if (int.TryParse(Console.ReadLine(), out int Value) && Value >= 1 && Value <= Data.Count) { 
                 var Character = Data[Value - 1];
                 Console.Clear();
+                Console.WriteLine("\x1b[3J");
                 Console.WriteLine("-----Character Detail-----");
                 Console.WriteLine($"-----------------------------");
 
@@ -324,7 +348,7 @@ public class SpaceExplorationGame {
                 }
 
                 Console.WriteLine($"-----------------------------");
-                Console.WriteLine("Press 1 to DELETE or Press any key to return to the menu.");
+                Console.WriteLine("Press 1 to DELETE or Press enter to return to the menu.");
                 Console.Write("Choice: ");
                 string WantToDelete = Console.ReadLine();
 
@@ -335,33 +359,43 @@ public class SpaceExplorationGame {
                     if (ConfirmDelete == "CONFIRM") {
                         int Id = Convert.ToInt32(Character["id"]);
                         if (DB.Delete(TableName, Id)) {
+                            Console.WriteLine("Deleting...");
+                            Thread.Sleep(3000);
                             Console.Clear();
+                            Console.WriteLine("\x1b[3J");
                             Console.WriteLine("Deleted Successfully!!!!");
                             Console.WriteLine("Press any key to return to the menu.");
                             Console.ReadKey();
                             Console.Clear();
+                            Console.WriteLine("\x1b[3J");
                         } else {
                             Console.WriteLine("Failed to Delete!!!");
                         }
                     } else {
+                        Console.WriteLine("Canceled...");
+                        Thread.Sleep(2000);
                         Console.Clear();
-                        Console.WriteLine("Cancelled!!");
-                        Console.WriteLine(" ");
-                        Console.WriteLine("Press any key to return to the menu.");
-                        Console.ReadKey();
-                        Console.Clear();
+                        Console.WriteLine("\x1b[3J");
+                        LoadGame();
                     }
                 } else {
+                    Console.WriteLine("Loading...");
+                    Thread.Sleep(2000);
                     Console.Clear();
+                    Console.WriteLine("\x1b[3J");
                     LoadGame();
                 }
             } else {
+                Console.WriteLine("Loading...");
+                Thread.Sleep(2000);
                 Console.Clear();
+                Console.WriteLine("\x1b[3J");
                 Console.WriteLine("Error!!!");
                 Console.WriteLine(" ");
                 Console.WriteLine("Press any key to return to the menu.");
                 Console.ReadKey();
                 Console.Clear();
+                Console.WriteLine("\x1b[3J");
             }
         } catch (Exception e) { 
             Console.WriteLine("There is an error while loading you character!!" + e.Message);
@@ -474,6 +508,7 @@ public class SpaceExplorationGame {
         Console.WriteLine("Press any key to go back to main menu.");
         Console.ReadKey();
         Console.Clear();
+        Console.WriteLine("\x1b[3J");
     }
 
     public static void Credits() {
@@ -501,5 +536,6 @@ public class SpaceExplorationGame {
         Console.WriteLine("Press any key to go back to main menu.");
         Console.ReadKey();
         Console.Clear();
+        Console.WriteLine("\x1b[3J");
     }
 }
